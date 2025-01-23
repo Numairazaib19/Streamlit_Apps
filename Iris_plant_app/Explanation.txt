@@ -1,0 +1,34 @@
+This Python code is for a simple web application using Streamlit that classifies iris flowers into three species (setosa, versicolor, virginica) based on user-inputted sepal and petal measurements. It uses a pre-trained machine learning model loaded from a pickled file (`model.pkl`). Here's the explanation of the code:
+
+1. Import necessary libraries:
+   - `sklearn.datasets` for loading the iris dataset.
+   - `pandas` for data manipulation.
+   - `streamlit` for creating the web application.
+   - `pickle` for loading a pre-trained machine learning model.
+   - `numpy` for numerical operations.
+
+2. Define the list `species` containing the three iris flower species names.
+3. Define the list `image` containing the file names of images corresponding to each species.
+
+4. Open the pickled file `model.pkl` in binary read mode (`'rb'`) and load the pre-trained machine learning model into the `model` variable.
+
+5. Define the `main()` function, which is the main logic of the Streamlit web application.
+
+6. Create a sidebar titled "Inputs" where users can adjust the sepal and petal measurements using sliders. These sliders allow users to set values for sepal length, sepal width, petal length, and petal width.
+
+7. Retrieve the values selected by the user from the sliders and store them in variables `sepal_length`, `sepal_width`, `petal_length`, and `petal_width`.
+
+8. Create a NumPy array `inp` containing the user-inputted values. `inp` is then reshaped to have a shape of (1, 4) using `np.expand_dims()` because the machine learning model expects input data in this shape. This prepares the input data for making predictions with the model.
+
+9. Use the pre-trained model to make predictions on the user's input data. `model.predict_proba()` computes class probabilities for the input data and stores the result in the `prediction` variable.
+
+10. Set the title of the main page to "Iris Flower Classification" and provide a brief description of the app's purpose.
+
+11. Check if there is a prediction result available. If so, display the results on the main page.
+   - A markdown section is used to display the heading "Results."
+   - The predicted probabilities of each class are displayed in a Pandas DataFrame and shown using `st.dataframe()`.
+   - The predicted class with the highest probability is determined using `np.argmax(prediction)`, and the result is displayed.
+   - An image corresponding to the predicted class is displayed using `st.image()`.
+
+12. The `if __name__ == "__main__":` line ensures that the `main()` function is only executed when the script is run directly (as opposed to being imported as a module). It calls the `main()` function to start the Streamlit web application.
+
